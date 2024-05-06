@@ -1,0 +1,44 @@
+.first-row, .second-row, .third-row {
+    display: flex;
+}
+
+.first-row > * {
+    margin-right: 3px; /* Espacio a la derecha de cada elemento */
+}
+
+.second-row > * {
+    margin-top: 3px; /* Espacio encima de cada elemento */
+    margin-right: 3px; /* Espacio a la derecha de cada elemento */
+}
+
+.third-row > * {
+    margin-top: 3px; /* Espacio encima de cada elemento */
+    margin-right: 3px; /* Espacio a la derecha de cada elemento */
+}
+
+.fourth-row > * {
+    margin-top: 3px; /* Espacio encima de cada elemento */
+    margin-right: 3px; /* Espacio a la derecha de cada elemento */
+}
+
+.second-row{
+    margin-left: 15px;
+}
+
+.third-row{
+    margin-left: 30px;
+}
+
+.button-space{
+        height: 50px;
+        width: 400px;
+        margin-left: 120px;
+        background-color: transparent;
+        border: 1px solid #fff;
+        border-radius: 4px 4px 2px 2px ;
+        color: #ffffff;
+        font-size: 20px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        text-transform: uppercase;
+}
