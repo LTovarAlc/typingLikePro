@@ -3,7 +3,6 @@ import ButtonKey from "./buttonKey/buttonKey";
 import "./keyboard.css";
 
 const Keyboard = () => {
-
     // Arrays con letras en el teclado
     const firstRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const secondRowLetters = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
@@ -14,7 +13,7 @@ const Keyboard = () => {
     // Función de evento keydown
     const handleKeyDown = (event) => {
         const keyPressed = event.key.toUpperCase();
-        if (firstRowLetters.includes(keyPressed) || secondRowLetters.includes(keyPressed) || thirdRowLetters.includes(keyPressed)) {
+        if (firstRowLetters.includes(keyPressed) || secondRowLetters.includes(keyPressed) || thirdRowLetters.includes(keyPressed) || keyPressed === ' ') {
             setActiveKeys(prevKeys => ({ ...prevKeys, [keyPressed]: true }));
             setTimeout(() => {
                 setActiveKeys(prevKeys => {
@@ -63,7 +62,12 @@ const Keyboard = () => {
                 ))}
             </div>
             <div className="fourth-row">
-                <button className="button-space">Space</button>
+            <ButtonKey 
+                key={`fourth-row-space`} 
+                text={"Space"} 
+                isActive={activeKeys[" "]} 
+                isSpaceKey={true}
+            />
             </div>
         </div>
     );

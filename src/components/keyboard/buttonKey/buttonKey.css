@@ -16,3 +16,8 @@
     background-color: #fff;
     color: #000;
 }
+
+.buttonKey--space {
+    width: 400px;
+    margin-left: 70px;
+}

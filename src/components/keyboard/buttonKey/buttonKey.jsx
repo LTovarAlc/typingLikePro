@@ -1,7 +1,7 @@
 import "./buttonKey.css"
 import React, {useEffect, useState} from "react"
 
-const ButtonKey = ({ text, isActive }) => {
+const ButtonKey = ({ text, isActive, isSpaceKey }) => {
     const [isActiveState, setIsActiveState] = useState(isActive);
 
     useEffect(() => {
@@ -18,8 +18,9 @@ const ButtonKey = ({ text, isActive }) => {
     }, [isActiveState]);
 
     const buttonClass = isActiveState ? 'buttonKey buttonKey--active' : 'buttonKey';
+    const spaceKeyClass = isSpaceKey ? 'buttonKey--space' : '';
     return (
-        <button className={buttonClass}>
+        <button className={`${buttonClass} ${spaceKeyClass}`}>
             {text}
         </button>
     );
