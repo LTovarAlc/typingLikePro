@@ -2,19 +2,22 @@ import React, { useState, useEffect } from "react";
 import ButtonKey from "./buttonKey/buttonKey";
 import "./keyboard.css";
 
-const Keyboard = () => {
-    // Arrays con letras en el teclado
+const Keyboard = ({setTypedText}) => {
+    
+    const [activeKeys, setActiveKeys] = useState({});
+
+    // keys
     const firstRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const secondRowLetters = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
     const thirdRowLetters = ["Z", "X", "C", "V", "B", "N", "M", ",", "."];
 
-    const [activeKeys, setActiveKeys] = useState({});
 
-    // Función de evento keydown
+    // Función event keydown
     const handleKeyDown = (event) => {
         const keyPressed = event.key.toUpperCase();
         if (firstRowLetters.includes(keyPressed) || secondRowLetters.includes(keyPressed) || thirdRowLetters.includes(keyPressed) || keyPressed === ' ') {
             setActiveKeys(prevKeys => ({ ...prevKeys, [keyPressed]: true }));
+            setTypedText(prevText => prevText + event.key);
             setTimeout(() => {
                 setActiveKeys(prevKeys => {
                     const newKeys = { ...prevKeys };

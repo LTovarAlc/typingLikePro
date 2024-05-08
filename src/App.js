@@ -1,10 +1,16 @@
-
 import './App.css';
 import Keyboard from './components/keyboard/keyboard';
+import Screen from './components/screen/screen';
+import { useState } from 'react';
 
 function App() {
+  const [typedText, setTypedText] = useState('');
+
   return(
-    <Keyboard/>
+    <section>
+      <Screen text={typedText} />
+      <Keyboard setTypedText={setTypedText}/>
+    </section>
   )
 }
 

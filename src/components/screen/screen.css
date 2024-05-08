@@ -1,0 +1,13 @@
+.screen{
+    height: 300px;
+    width: 600px;
+    padding: 20px 12px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
