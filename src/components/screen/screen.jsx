@@ -1,6 +1,6 @@
 import "./screen.css"
 
-const Screen = ({text}) => {
+const VirtualScreen = ({text}) => {
     return( 
     <div className="screen">
         {text}
@@ -8,4 +8,4 @@ const Screen = ({text}) => {
     )
 }
 
-export default Screen
+export default VirtualScreen

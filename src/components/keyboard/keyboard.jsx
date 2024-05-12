@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ButtonKey from "./buttonKey/buttonKey";
 import "./keyboard.css";
 
-const Keyboard = ({setTypedText}) => {
+const VirtualKeyboard = ({setTypedText}) => {
     
     const [activeKeys, setActiveKeys] = useState({});
 
@@ -76,4 +76,4 @@ const Keyboard = ({setTypedText}) => {
     );
 }
 
-export default Keyboard;
+export default VirtualKeyboard;

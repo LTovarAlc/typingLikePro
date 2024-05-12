@@ -1,16 +1,11 @@
-import './App.css';
-import Keyboard from './components/keyboard/keyboard';
-import Screen from './components/screen/screen';
-import { useState } from 'react';
+import "./App.css";
+import MechanographicLayout from "./components/mechanographic-layout/mechanographic-layout";
+import { useState } from "react";
+import KeyboardPage from "./pages/keyboardPage/keyboardPage";
 
 function App() {
-  const [typedText, setTypedText] = useState('');
-
-  return(
-    <section>
-      <Screen text={typedText} />
-      <Keyboard setTypedText={setTypedText}/>
-    </section>
+  return (
+    <KeyboardPage/>
   )
 }
 
