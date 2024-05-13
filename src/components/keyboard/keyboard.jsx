@@ -2,31 +2,36 @@ import React, { useState, useEffect } from "react";
 import ButtonKey from "./buttonKey/buttonKey";
 import "./keyboard.css";
 
-const VirtualKeyboard = ({setTypedText}) => {
-    
+const VirtualKeyboard = ({ setTypedText }) => {
     const [activeKeys, setActiveKeys] = useState({});
 
-    // keys
-    const firstRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
-    const secondRowLetters = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
-    const thirdRowLetters = ["Z", "X", "C", "V", "B", "N", "M", ",", "."];
+    // Arrays with keys
+    const firstRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "Del"];
+    const secondRowLetters = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Enter"];
+    const thirdRowLetters = ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "Shift"];
 
-
-    // Función event keydown
-    const handleKeyDown = (event) => {
-        const keyPressed = event.key.toUpperCase();
-        if (firstRowLetters.includes(keyPressed) || secondRowLetters.includes(keyPressed) || thirdRowLetters.includes(keyPressed) || keyPressed === ' ') {
-            setActiveKeys(prevKeys => ({ ...prevKeys, [keyPressed]: true }));
-            setTypedText(prevText => prevText + event.key);
-            setTimeout(() => {
-                setActiveKeys(prevKeys => {
-                    const newKeys = { ...prevKeys };
-                    delete newKeys[keyPressed];
-                    return newKeys;
-                });
-            }, 100);
-        }
-    };
+    // Function event keydown
+   const handleKeyDown = (event) => {
+    const keyPressed = event.key.toUpperCase();
+    if (
+        firstRowLetters.includes(keyPressed) ||
+        secondRowLetters.includes(keyPressed) ||
+        thirdRowLetters.includes(keyPressed) ||
+        keyPressed === ' '
+    ) {
+        setActiveKeys(prevKeys => ({ ...prevKeys, [keyPressed]: true }));
+        setTypedText(prevText => prevText + event.key);
+        setTimeout(() => {
+            setActiveKeys(prevKeys => {
+                const newKeys = { ...prevKeys };
+                delete newKeys[keyPressed];
+                return newKeys;
+            });
+        }, 100);
+    } else if (keyPressed === "BACKSPACE") {
+        setTypedText(prevText => prevText.slice(0, -1)); // delete last letter
+    }
+};
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeyDown);
@@ -39,38 +44,38 @@ const VirtualKeyboard = ({setTypedText}) => {
         <div className="keyboard">
             <div className="first-row">
                 {firstRowLetters.map((letter, index) => (
-                    <ButtonKey 
-                        key={`first-row-${letter}`} 
-                        text={letter} 
-                        isActive={activeKeys[letter]} 
+                    <ButtonKey
+                        key={`first-row-${letter}`}
+                        text={letter}
+                        isActive={activeKeys[letter]}
                     />
                 ))}
             </div>
             <div className="second-row">
                 {secondRowLetters.map((letter, index) => (
-                    <ButtonKey 
-                        key={`second-row-${letter}`} 
-                        text={letter} 
-                        isActive={activeKeys[letter]} 
+                    <ButtonKey
+                        key={`second-row-${letter}`}
+                        text={letter}
+                        isActive={activeKeys[letter]}
                     />
                 ))}
             </div>
             <div className="third-row">
                 {thirdRowLetters.map((letter, index) => (
-                    <ButtonKey 
-                        key={`third-row-${letter}`} 
-                        text={letter} 
-                        isActive={activeKeys[letter]} 
+                    <ButtonKey
+                        key={`third-row-${letter}`}
+                        text={letter}
+                        isActive={activeKeys[letter]}
                     />
                 ))}
             </div>
             <div className="fourth-row">
-            <ButtonKey 
-                key={`fourth-row-space`} 
-                text={"Space"} 
-                isActive={activeKeys[" "]} 
-                isSpaceKey={true}
-            />
+                <ButtonKey
+                    key={`fourth-row-space`}
+                    text={"Space"}
+                    isActive={activeKeys[" "]}
+                    isSpaceKey={true}
+                />
             </div>
         </div>
     );
