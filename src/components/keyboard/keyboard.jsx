@@ -10,29 +10,30 @@ const VirtualKeyboard = ({ setTypedText }) => {
     const secondRowLetters = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Enter"];
     const thirdRowLetters = ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "Shift"];
 
-    // Function event keydown
-   const handleKeyDown = (event) => {
-    const keyPressed = event.key.toUpperCase();
-    if (
-        firstRowLetters.includes(keyPressed) ||
-        secondRowLetters.includes(keyPressed) ||
-        thirdRowLetters.includes(keyPressed) ||
-        keyPressed === ' '
-    ) {
-        setActiveKeys(prevKeys => ({ ...prevKeys, [keyPressed]: true }));
-        setTypedText(prevText => prevText + event.key);
-        setTimeout(() => {
-            setActiveKeys(prevKeys => {
-                const newKeys = { ...prevKeys };
-                delete newKeys[keyPressed];
-                return newKeys;
+    // event keydown
+    const handleKeyDown = (event) => {
+        const keyPressed = event.key.toUpperCase();
+        if (
+            firstRowLetters.includes(keyPressed) ||
+            secondRowLetters.includes(keyPressed) ||
+            thirdRowLetters.includes(keyPressed) ||
+            keyPressed === ' '
+        ) {
+            setActiveKeys(prevKeys => ({ ...prevKeys, [keyPressed]: true }));
+            setTypedText(prevText => {
+                return prevText + event.key;
             });
-        }, 100);
-    } else if (keyPressed === "BACKSPACE") {
-        setTypedText(prevText => prevText.slice(0, -1)); // delete last letter
-    }
-};
-
+            setTimeout(() => {
+                setActiveKeys(prevKeys => {
+                    const newKeys = { ...prevKeys };
+                    delete newKeys[keyPressed];
+                    return newKeys;
+                });
+            }, 100);
+        } else if (keyPressed === "BACKSPACE") {
+            setTypedText(prevText => prevText.slice(0, -1)); // delete last letter
+        }
+    };
     useEffect(() => {
         document.addEventListener("keydown", handleKeyDown);
         return () => {

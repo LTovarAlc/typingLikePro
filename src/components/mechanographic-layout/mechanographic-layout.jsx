@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import VirtualKeyboard from '../keyboard/keyboard';
 import VirtualScreen from '../screen/screen';
 
@@ -7,10 +7,11 @@ function MechanographicLayout() {
 
   return(
     <section className="mechanographic-layout">
-      <VirtualScreen text={typedText} />
-      <VirtualKeyboard setTypedText={setTypedText}/>
+      <VirtualScreen typedText={typedText} />
+      <VirtualKeyboard setTypedText={setTypedText} />
     </section>
   )
 }
 
 export default MechanographicLayout;
+
