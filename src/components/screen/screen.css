@@ -1,11 +1,12 @@
 .screen{
-    height: 300px;
-    width: 600px;
-    padding: 20px 12px;
+    height: 150px;
+    width: 505px;
+    padding: 70px 80px;
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
-    font-size: 20px;
+    font-size: 35px;
+    font-weight: 700;
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     word-wrap: break-word;
