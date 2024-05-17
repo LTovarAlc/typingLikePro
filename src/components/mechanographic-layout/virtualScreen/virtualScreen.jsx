@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./screen.css";
+import "./virtualScreen.css";
 
 const VirtualScreen = ({ typedText }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -7,11 +7,8 @@ const VirtualScreen = ({ typedText }) => {
     "Birds chirped in the morning, sun rising over hills, painting skies with hues of gold an orange, picturesque dawn.";
 
     useEffect(() => {
-        const lastTypedLetter = typedText ? typedText[typedText.length - 1].toUpperCase() : null;
-        console.log(`Last typed letter: ${lastTypedLetter}`); // Add this line
-        console.log(`Current letter in paragraph: ${paragraph[currentIndex].toUpperCase()}`); // Add this line
+        const lastTypedLetter = typedText ? typedText[typedText.length - 1].toUpperCase() : null; 
         if (lastTypedLetter && lastTypedLetter === paragraph[currentIndex].toUpperCase()) {
-            console.log("Las letras coinciden");
             setCurrentIndex(prevIndex => prevIndex + 1);
         }
     }, [typedText]);

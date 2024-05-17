@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import VirtualKeyboard from '../keyboard/keyboard';
-import VirtualScreen from '../screen/screen';
+import VirtualKeyboard from './keyboard/virtualKeyboard';
+import VirtualScreen from './virtualScreen/virtualScreen';
 
 function MechanographicLayout() {
   const [typedText, setTypedText] = useState('');

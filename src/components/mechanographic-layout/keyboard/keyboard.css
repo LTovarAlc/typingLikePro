@@ -1,0 +1,32 @@
+.first-row,
+.second-row,
+.third-row {
+  display: flex;
+}
+
+.first-row > * {
+  margin-right: 3px;
+}
+
+.second-row > * {
+  margin-top: 3px; 
+  margin-right: 3px;
+}
+
+.third-row > * {
+  margin-top: 3px;
+  margin-right: 3px;
+}
+
+.fourth-row > * {
+  margin-top: 3px; 
+  margin-right: 3px; 
+}
+
+.second-row {
+  margin-left: 15px;
+}
+
+.third-row {
+  margin-left: 30px;
+}
