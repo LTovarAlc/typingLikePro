@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 import "./virtualScreen.css";
 
-const VirtualScreen = ({ typedText }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const paragraph =
-    "Birds chirped in the morning, sun rising over hills, painting skies with hues of gold an orange, picturesque dawn.";
+const VirtualScreen = ({ typedText, paragraph }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        const lastTypedLetter = typedText ? typedText[typedText.length - 1].toUpperCase() : null; 
-        if (lastTypedLetter && lastTypedLetter === paragraph[currentIndex].toUpperCase()) {
+        const lastTypedLetter = typedText ? typedText[typedText.length - 1].toUpperCase() : null;
+        const currentChar = paragraph[currentIndex];
+
+        if (currentChar && lastTypedLetter === currentChar.toUpperCase()) {
             setCurrentIndex(prevIndex => prevIndex + 1);
         }
-    }, [typedText]);
+    }, [typedText, paragraph, currentIndex]);
 
-  const coloredText = paragraph.slice(0, currentIndex);
-  const remainingText = paragraph.slice(currentIndex);
+    const coloredText = paragraph.slice(0, currentIndex);
+    const remainingText = paragraph.slice(currentIndex);
 
-  return (
-    <div className="screen">
-      <p>
-        <span style={{ color: "#4fffc7" }}>{coloredText}</span>
-        {remainingText}
-      </p>
-    </div>
-  );
+    return (
+        <div className="screen">
+            <p>
+                <span style={{ color: "#4fffc7" }}>{coloredText}</span>
+                {remainingText}
+            </p>
+        </div>
+    );
 };
 
 export default VirtualScreen;

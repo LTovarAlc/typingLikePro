@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import ButtonKey from "./buttonKey/buttonKey";
 import "./keyboard.css";
 
-const VirtualKeyboard = ({ setTypedText }) => {
+const VirtualKeyboard = ({ setTypedText, onKeyPress }) => {
     const [activeKeys, setActiveKeys] = useState({});
 
-    // Arrays with keys
     const firstRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "Del"];
     const secondRowLetters = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Enter"];
     const thirdRowLetters = ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "Shift"];
 
-    // event keydown
     const handleKeyDown = (event) => {
         const keyPressed = event.key.toUpperCase();
         if (
@@ -20,9 +18,8 @@ const VirtualKeyboard = ({ setTypedText }) => {
             keyPressed === ' '
         ) {
             setActiveKeys(prevKeys => ({ ...prevKeys, [keyPressed]: true }));
-            setTypedText(prevText => {
-                return prevText + event.key;
-            });
+            onKeyPress(event.key);  // Pass the pressed key to the handler
+            setTypedText(prevText => prevText + event.key);
             setTimeout(() => {
                 setActiveKeys(prevKeys => {
                     const newKeys = { ...prevKeys };
@@ -31,9 +28,10 @@ const VirtualKeyboard = ({ setTypedText }) => {
                 });
             }, 100);
         } else if (keyPressed === "BACKSPACE") {
-            setTypedText(prevText => prevText.slice(0, -1)); // delete last letter
+            setTypedText(prevText => prevText.slice(0, -1));
         }
     };
+
     useEffect(() => {
         document.addEventListener("keydown", handleKeyDown);
         return () => {
