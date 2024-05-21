@@ -1,13 +1,11 @@
 import React from "react";
-import Stopwatch from "./stopWatch/stopWatch";
 import "./sidePanel.css";
 
-const SidePanel = ({ start, stop }) => {
+const SidePanel = () => {
     return (
         <div className="sidePanel">
             <div className="sidePanel-section">
                 <span>Time</span>
-                <Stopwatch start={start} stop={stop} />
             </div>
             <div className="sidePanel-section">
                 <span>Errors:</span>

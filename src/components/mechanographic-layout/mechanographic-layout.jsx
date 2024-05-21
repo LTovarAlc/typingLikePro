@@ -42,7 +42,7 @@ function MechanographicLayout() {
                 <VirtualKeyboard setTypedText={setTypedText} onKeyPress={handleKeyPress} />
             </div>
             <div className="sidePanel-container">
-                <SidePanel start={stopwatchStarted} stop={stopwatchStopped} />
+                <SidePanel />
             </div>
         </section>
     );
