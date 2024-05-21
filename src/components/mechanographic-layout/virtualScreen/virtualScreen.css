@@ -5,10 +5,13 @@
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
-    font-size: 35px;
+    font-size: 28px;
     font-weight: 700;
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
