@@ -42,21 +42,17 @@ function MechanographicLayout() {
   }, [correctLettersCount, currentParagraphIndex, paragraphs]);
 
   const handleKeyPress = (pressedKey) => {
-    console.log('Tecla pulsada:', pressedKey);
     const currentParagraph = paragraphs[currentParagraphIndex];
     const upperKey = pressedKey.toUpperCase();
 
     setCorrectLettersCount((prevCount) => {
       const currentChar = currentParagraph[prevCount].toUpperCase();
-      console.log(`Comparando: '${currentChar}' con '${upperKey}'`);
 
       if (currentChar === upperKey) {
         const newCount = prevCount + 1;
-        console.log('correctLettersCount actualizado :>> ', newCount);
         setTypedText((prevText) => prevText + pressedKey);
         return newCount;
       } else {
-        console.log(`Letra incorrecta: esperaba '${currentChar}', pero se ingresó '${upperKey}'`);
         return prevCount;
       }
     });
