@@ -10,27 +10,35 @@ const VirtualKeyboard = ({ setTypedText, onKeyPress }) => {
     const thirdRowLetters = ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "Shift"];
 
     const handleKeyDown = (event) => {
-        const keyPressed = event.key.toUpperCase();
-        if (
-            firstRowLetters.includes(keyPressed) ||
-            secondRowLetters.includes(keyPressed) ||
-            thirdRowLetters.includes(keyPressed) ||
-            keyPressed === ' '
-        ) {
-            setActiveKeys(prevKeys => ({ ...prevKeys, [keyPressed]: true }));
-            onKeyPress(event.key);  // Pass the pressed key to the handler
-            setTypedText(prevText => prevText + event.key);
-            setTimeout(() => {
-                setActiveKeys(prevKeys => {
-                    const newKeys = { ...prevKeys };
-                    delete newKeys[keyPressed];
-                    return newKeys;
-                });
-            }, 100);
-        } else if (keyPressed === "BACKSPACE") {
-            setTypedText(prevText => prevText.slice(0, -1));
+        let keyPressed = event.key;
+      
+        // Manejar teclas especiales
+        if (keyPressed === ' ') {
+          keyPressed = 'Space';
         }
-    };
+      
+        keyPressed = keyPressed.toUpperCase();
+      
+        if (
+          firstRowLetters.includes(keyPressed) ||
+          secondRowLetters.includes(keyPressed) ||
+          thirdRowLetters.includes(keyPressed) ||
+          keyPressed === 'SPACE'
+        ) {
+          setActiveKeys(prevKeys => ({ ...prevKeys, [keyPressed]: true }));
+          onKeyPress(event.key);  // Pass the pressed key to the handler
+          setTimeout(() => {
+            setActiveKeys(prevKeys => {
+              const newKeys = { ...prevKeys };
+              delete newKeys[keyPressed];
+              return newKeys;
+            });
+          }, 100);
+        } else if (keyPressed === "BACKSPACE") {
+          setTypedText(prevText => prevText.slice(0, -1));
+        }
+      };
+      
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeyDown);
