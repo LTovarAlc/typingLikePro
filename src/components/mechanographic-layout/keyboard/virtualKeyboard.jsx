@@ -5,9 +5,9 @@ import "./keyboard.css";
 const VirtualKeyboard = ({ setTypedText, onKeyPress }) => {
     const [activeKeys, setActiveKeys] = useState({});
 
-    const firstRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "Del"];
-    const secondRowLetters = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Enter"];
-    const thirdRowLetters = ["Z", "X", "C", "V", "B", "N", "M", ",", ".", "Shift"];
+    const firstRowLetters = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
+    const secondRowLetters = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+    const thirdRowLetters = ["Z", "X", "C", "V", "B", "N", "M", ",", "."];
 
     const handleKeyDown = (event) => {
         let keyPressed = event.key;
