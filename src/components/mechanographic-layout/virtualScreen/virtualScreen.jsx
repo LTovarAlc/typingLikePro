@@ -5,13 +5,8 @@ const VirtualScreen = ({ typedText, paragraph }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        const lastTypedLetter = typedText ? typedText[typedText.length - 1].toUpperCase() : null;
-        const currentChar = paragraph[currentIndex];
-
-        if (currentChar && lastTypedLetter === currentChar.toUpperCase()) {
-            setCurrentIndex(prevIndex => prevIndex + 1);
-        }
-    }, [typedText, paragraph, currentIndex]);
+      setCurrentIndex(typedText.length);
+    }, [typedText]);
 
     const coloredText = paragraph.slice(0, currentIndex);
     const remainingText = paragraph.slice(currentIndex);
