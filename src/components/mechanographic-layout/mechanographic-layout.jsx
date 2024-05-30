@@ -10,6 +10,8 @@ function MechanographicLayout() {
   const [correctLettersCount, setCorrectLettersCount] = useState(0);
 
   const paragraphs = [
+    "prueba",
+    "texto de prueba",
     "Charizard looks like a dragon... but he is not a dragon type. Actually, a pokemon that looks like an apple is a dragon type...",
     "Batman, the dark knight of Gotham City, uses his intelligence, physical prowess, and a vast array of gadgets to protect the city from notorious villains like the Joker, always staying one step ahead.",
     "Luke Skywalker, a young farm boy with a destiny, trains to become a Jedi Knight and battles the evil Galactic Empire, ultimately confronting Darth Vader and the Emperor to restore peace and justice to the galaxy.",
@@ -26,41 +28,38 @@ function MechanographicLayout() {
     setCorrectLettersCount(0);
   }, [currentParagraphIndex]);
 
-  useEffect(() => {
-    const currentParagraph = paragraphs[currentParagraphIndex];
-
-    if (correctLettersCount === currentParagraph.length) {
-      console.log("Párrafo actual escrito correctamente");
-      if (currentParagraphIndex + 1 < paragraphs.length) {
-        setCurrentParagraphIndex((prevIndex) => prevIndex + 1);
-        setCorrectLettersCount(0);
-      } else {
-        setGameCompleted(true);
-        console.log("¡Juego completado! ¡Felicidades!");
-      }
-    }
-  }, [correctLettersCount, currentParagraphIndex, paragraphs]);
-
   const handleKeyPress = (pressedKey) => {
-    console.log('Tecla pulsada:', pressedKey);
-    const currentParagraph = paragraphs[currentParagraphIndex];
     const upperKey = pressedKey.toUpperCase();
-
+  
     setCorrectLettersCount((prevCount) => {
+      const currentParagraph = paragraphs[currentParagraphIndex];
       const currentChar = currentParagraph[prevCount].toUpperCase();
-      console.log(`Comparando: '${currentChar}' con '${upperKey}'`);
-
+  
       if (currentChar === upperKey) {
         const newCount = prevCount + 1;
-        console.log('correctLettersCount actualizado :>> ', newCount);
         setTypedText((prevText) => prevText + pressedKey);
+  
+        if (newCount === currentParagraph.length) {
+          if (currentParagraphIndex + 1 < paragraphs.length) {
+            setCurrentParagraphIndex((prevIndex) => prevIndex + 1);
+            setTypedText("");
+            return 0;
+          } else {
+            setGameCompleted(true);
+          }
+        }
         return newCount;
       } else {
-        console.log(`Letra incorrecta: esperaba '${currentChar}', pero se ingresó '${upperKey}'`);
         return prevCount;
       }
     });
   };
+  
+  useEffect(() => {
+    console.log("Cambiando a nuevo párrafo, índice:", currentParagraphIndex);
+    console.log("Texto escrito reiniciado:", typedText);
+    console.log("Contador de letras correctas reiniciado:", correctLettersCount);
+  }, [currentParagraphIndex]);  
 
   return (
     <section className="mechanographic-layout-container">
