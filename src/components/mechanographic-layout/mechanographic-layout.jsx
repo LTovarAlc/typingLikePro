@@ -16,11 +16,10 @@ function MechanographicLayout() {
     "Batman, the dark knight of Gotham City, uses his intelligence, physical prowess, and a vast array of gadgets to protect the city from notorious villains like the Joker, always staying one step ahead.",
     "Luke Skywalker, a young farm boy with a destiny, trains to become a Jedi Knight and battles the evil Galactic Empire, ultimately confronting Darth Vader and the Emperor to restore peace and justice to the galaxy.",
     "SpiderMan, the young and agile hero of New York City, swings through the streets using his spider like abilities, all while balancing the challenges of being a high school student and protecting his city from formidable villains.",
-    "Everyone questions who built the Egyptian pyramids... but nobody questions who built the pyramids in Mexico.",
     "The sound of Darth Vaders lightsaber was created by mixing the sound of an old camera with the hum of a television with the volume turned off.",
-    "Spider-Man was created by Stan Lee and Steve Ditko. Originally, he was going to be called Mosquito Man.",
+    "SpiderMan was created by Stan Lee and Steve Ditko. Originally, he was going to be called Mosquito Man.",
     "Harry Potters lightning bolt scar was the result of Voldemorts Avada Kedavra curse when he was a baby.",
-    "The 'Lord of the Rings' trilogy was filmed in New Zealand. After the success of the films, tourism in the country increased significantly."
+    "The Lord of the Rings trilogy was filmed in New Zealand. After the success of the films, tourism in the country increased significantly."
   ];
 
   useEffect(() => {
