@@ -10,14 +10,7 @@ const VirtualKeyboard = ({ setTypedText, onKeyPress }) => {
     const thirdRowLetters = ["Z", "X", "C", "V", "B", "N", "M", ",", "."];
 
     const handleKeyDown = (event) => {
-        let keyPressed = event.key;
-      
-        // Manejar teclas especiales
-        if (keyPressed === ' ') {
-          keyPressed = 'Space';
-        }
-      
-        keyPressed = keyPressed.toUpperCase();
+        let keyPressed = event.key.toUpperCase();
       
         if (
           firstRowLetters.includes(keyPressed) ||
