@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import VirtualKeyboard from "./keyboard/virtualKeyboard";
 import VirtualScreen from "./virtualScreen/virtualScreen";
 import "./mechanographic-layout.css";
@@ -23,18 +23,26 @@ function MechanographicLayout() {
     "The 'Lord of the Rings' trilogy was filmed in New Zealand. After the success of the films, tourism in the country increased significantly.",
   ];
 
+  const currentParagraphIndexRef = useRef(currentParagraphIndex);
+  const correctLettersCountRef = useRef(correctLettersCount);
+  const typedTextRef = useRef(typedText);
+
   useEffect(() => {
+    currentParagraphIndexRef.current = currentParagraphIndex;
+    correctLettersCountRef.current = 0;
+    typedTextRef.current = "";
     setTypedText("");
     setCorrectLettersCount(0);
-    console.log("Cambiando a nuevo párrafo, índice:", currentParagraphIndex);
+    console.log("useEffect - Cambiando a nuevo párrafo, índice:", currentParagraphIndex);
+    console.log("Párrafo actual en VirtualScreen:", paragraphs[currentParagraphIndex]);
   }, [currentParagraphIndex]);
 
   const handleKeyPress = (pressedKey) => {
-    const upperKey = pressedKey.toUpperCase();
+    const upperKey = pressedKey === ' ' ? ' ' : pressedKey.toUpperCase();
 
     setCorrectLettersCount((prevCount) => {
-      const currentParagraph = paragraphs[currentParagraphIndex];
-      const currentChar = currentParagraph[prevCount].toUpperCase();
+      const currentParagraph = paragraphs[currentParagraphIndexRef.current];
+      const currentChar = currentParagraph[prevCount] === ' ' ? ' ' : currentParagraph[prevCount].toUpperCase();
 
       console.log("currentParagraph:", currentParagraph);
       console.log("currentChar:", currentChar);
@@ -43,12 +51,18 @@ function MechanographicLayout() {
       if (currentChar === upperKey) {
         const newCount = prevCount + 1;
         setTypedText((prevText) => prevText + pressedKey);
+        typedTextRef.current += pressedKey;
 
         if (newCount === currentParagraph.length) {
-          if (currentParagraphIndex + 1 < paragraphs.length) {
+          if (currentParagraphIndexRef.current + 1 < paragraphs.length) {
             console.log("Párrafo completo. Cambiando al siguiente párrafo.");
-            console.log("parrafo a escribir :>> ", currentParagraph);
-            setCurrentParagraphIndex(currentParagraphIndex + 1);
+            setCurrentParagraphIndex((prevIndex) => {
+              const newIndex = prevIndex + 1;
+              console.log("Nuevo índice del párrafo:", newIndex);
+              return newIndex;
+            });
+            correctLettersCountRef.current = 0;
+            typedTextRef.current = "";
             return 0;
           } else {
             setGameCompleted(true);
@@ -62,6 +76,13 @@ function MechanographicLayout() {
       }
     });
   };
+
+  useEffect(() => {
+    console.log("Estado después de cambiar de párrafo:");
+    console.log("currentParagraphIndex:", currentParagraphIndex);
+    console.log("correctLettersCount:", correctLettersCount);
+    console.log("typedText:", typedText);
+  }, [correctLettersCount, typedText]);
 
   return (
     <section className="mechanographic-layout-container">
