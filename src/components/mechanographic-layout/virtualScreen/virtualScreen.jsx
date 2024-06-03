@@ -5,11 +5,13 @@ const VirtualScreen = ({ typedText, paragraph }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-      setCurrentIndex(typedText.length);
+      if (paragraph) {
+        setCurrentIndex(typedText.length);
+      }
     }, [typedText, paragraph]);
 
-    const coloredText = paragraph.slice(0, currentIndex);
-    const remainingText = paragraph.slice(currentIndex);
+    const coloredText = paragraph ? paragraph.slice(0, currentIndex) : '';
+    const remainingText = paragraph ? paragraph.slice(currentIndex) : '';
 
     return (
         <div className="screen">
