@@ -2,14 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import VirtualKeyboard from "./keyboard/virtualKeyboard";
 import VirtualScreen from "./virtualScreen/virtualScreen";
 import "./mechanographic-layout.css";
+import FinishCardAlert from "../finishGameAlert/finishGameAlert";
 
 function MechanographicLayout() {
   const [typedText, setTypedText] = useState("");
   const [currentParagraphIndex, setCurrentParagraphIndex] = useState(0);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [correctLettersCount, setCorrectLettersCount] = useState(0);
-  const [shuffledParagraphs, setShuffledParagraphs] = useState([]);
-  const [completedParagraphs, setCompletedParagraphs] = useState([]);
 
   const paragraphs = [
     "Charizard looks like a dragon... but he is not a dragon type. Actually, a pokemon that looks like an apple is a dragon type...",
@@ -35,30 +34,11 @@ function MechanographicLayout() {
     setCorrectLettersCount(0);
   }, [currentParagraphIndex]);
 
-  useEffect(() => {
-    // Shuffle the paragraphs array when component mounts or completes all paragraphs
-    if (shuffledParagraphs.length === 0 || completedParagraphs.length === paragraphs.length) {
-      const shuffled = shuffleArray(paragraphs);
-      setShuffledParagraphs(shuffled);
-      setCompletedParagraphs([]);
-      setCurrentParagraphIndex(0);
-    }
-  }, [shuffledParagraphs, completedParagraphs, paragraphs]);
-
-  const shuffleArray = (array) => {
-    const shuffledArray = [...array];
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-    }
-    return shuffledArray;
-  };
-
   const handleKeyPress = (pressedKey) => {
     const upperKey = pressedKey === ' ' ? ' ' : pressedKey.toUpperCase();
 
     setCorrectLettersCount((prevCount) => {
-      const currentParagraph = shuffledParagraphs[currentParagraphIndexRef.current];
+      const currentParagraph = paragraphs[currentParagraphIndexRef.current];
       const currentChar = currentParagraph[prevCount] === ' ' ? ' ' : currentParagraph[prevCount].toUpperCase();
 
       if (currentChar === upperKey) {
@@ -67,10 +47,11 @@ function MechanographicLayout() {
         typedTextRef.current += pressedKey;
 
         if (newCount === currentParagraph.length) {
-          const updatedCompletedParagraphs = [...completedParagraphs, currentParagraph];
-          setCompletedParagraphs(updatedCompletedParagraphs);
-          if (currentParagraphIndexRef.current + 1 < shuffledParagraphs.length) {
-            setCurrentParagraphIndex((prevIndex) => prevIndex + 1);
+          if (currentParagraphIndexRef.current + 1 < paragraphs.length) {
+            setCurrentParagraphIndex((prevIndex) => {
+              const newIndex = prevIndex + 1;
+              return newIndex;
+            });
             correctLettersCountRef.current = 0;
             typedTextRef.current = "";
             return 0;
@@ -93,13 +74,14 @@ function MechanographicLayout() {
       <div className="mechanographic-layout">
         <VirtualScreen
           typedText={typedText}
-          paragraph={shuffledParagraphs[currentParagraphIndex]}
+          paragraph={paragraphs[currentParagraphIndex]}
         />
         <VirtualKeyboard
           setTypedText={setTypedText}
           onKeyPress={handleKeyPress}
         />
       </div>
+      {currentParagraphIndex >= 5 && <FinishCardAlert />}
     </section>
   );
 }

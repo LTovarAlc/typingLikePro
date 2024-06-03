@@ -4,8 +4,8 @@ import 'animate.css'
 
 const FinishCardAlert = () => {
   return (
-    <div className="finishCardContainer animate__animated animate__bounceIn">
-      <div className="finishCardAlert">
+    <div className="finishCardContainer">
+      <div className="finishCardAlert animate__animated animate__bounceIn">
         <h2>Congratulations!</h2>
         <p>You completed 5/5 paragraphs</p>
         <div className="buttons-container">
