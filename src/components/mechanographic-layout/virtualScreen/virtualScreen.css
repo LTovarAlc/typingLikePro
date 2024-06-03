@@ -1,11 +1,11 @@
 .screen{
     height: 150px;
-    width: 420px;
-    padding: 70px 80px;
+    width: 460px;
+    padding: 50px 60px;
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
@@ -14,4 +14,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
