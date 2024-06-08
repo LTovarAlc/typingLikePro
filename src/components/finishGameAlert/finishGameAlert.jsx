@@ -1,6 +1,7 @@
 import React from "react";
 import "./finishCardAlert.css";
 import 'animate.css'
+import { Link } from "react-router-dom";
 
 const FinishCardAlert = () => {
   return (
@@ -9,9 +10,9 @@ const FinishCardAlert = () => {
         <h2>Congratulations!</h2>
         <p>You completed 5/5 paragraphs</p>
         <div className="buttons-container">
-          <button class="button"> Try again</button>
-          <button class="button"> Back to home</button>
+          <Link to={"/"}><button className="button"> Back to home</button></Link>
         </div>
+        <span>More levels comming soon!</span>
       </div>
     </div>
   );
