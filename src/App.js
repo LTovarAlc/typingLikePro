@@ -4,6 +4,7 @@ import KeyboardPage from "./pages/keyboardPage/keyboardPage";
 import { Background } from "./components/background/background";
 import Header from "./components/header/header";
 import Home from "./pages/home/home";
+import Footer from "./components/footer/footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/VirtualKeyboard" element={<KeyboardPage/>}/>
       </Routes>
+      {/* <Footer/> */}
     </Router>
   )
 }
