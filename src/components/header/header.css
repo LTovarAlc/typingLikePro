@@ -5,16 +5,16 @@
     justify-content: space-evenly;
     color: #fff;
     font-family: 'Roboto', sans-serif;
+    border-radius: 0px 0px 12px 12px
 }
 
-.logo-container h1{
-    font-size: 30px;
-    font-weight: 700;
-}
-
-.logo-container{
+.page-name{
     height: 100%;
+    width: auto;
+    font-size: 32px;
+    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Oswald', sans-serif;
 }
