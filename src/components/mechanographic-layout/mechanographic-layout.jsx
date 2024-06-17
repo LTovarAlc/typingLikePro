@@ -3,6 +3,7 @@ import VirtualKeyboard from "./keyboard/virtualKeyboard";
 import VirtualScreen from "./virtualScreen/virtualScreen";
 import "./mechanographic-layout.css";
 import FinishCardAlert from "../finishGameAlert/finishGameAlert";
+import 'animate.css'
 
 function MechanographicLayout() {
   const [typedText, setTypedText] = useState("");
@@ -70,7 +71,7 @@ function MechanographicLayout() {
   }, [correctLettersCount, typedText]);
 
   return (
-    <section className="mechanographic-layout-container">
+    <section className="mechanographic-layout-container animate__animated animate__zoomIn animate__delay-1s">
       <div className="mechanographic-layout">
         <VirtualScreen
           typedText={typedText}
